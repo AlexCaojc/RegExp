@@ -30,5 +30,11 @@ int main(int argc, char *argv[])
     qDebug() << QRegExp("a{5,}").exactMatch("aaaaaaa");
     qDebug() << QRegExp("a{5,10}").exactMatch("aaaaaaaaaaaaaa");
 
+
+    qDebug() << QRegExp("\\d{1,100}").exactMatch("215614545421255");
+    qDebug() << QRegExp("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}").exactMatch("192.168.0.235");
+    qDebug() << QRegExp("[0-2][0-9][0-9]").exactMatch("392");
+
+
     return a.exec();
 }
