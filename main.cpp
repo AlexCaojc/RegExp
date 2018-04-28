@@ -40,12 +40,32 @@ int main(int argc, char *argv[])
 
 
     ///范围
-
+#if 0
     qDebug() << QRegExp("[abc]").exactMatch("b");///只能取"abc"中的一个
     qDebug() << QRegExp("[^abc]").exactMatch("d");///除了"abc"之外的任意值
     qDebug() << QRegExp("^a").exactMatch("abc");///除了"abc"之外的任意值
     qDebug() << QRegExp("[a-zA-Z]").exactMatch("d");///a-zA-Z内的任意值
     qDebug() << QRegExp("[a-z]|[A-Z]").exactMatch("d");///a-zA-Z内的任意值
+#endif
+
+    /// \d,\s,\w,\\
+    /// . Any character
+    /// \d A digit [0-9]
+    /// \D [^0-9]
+    /// \s a whitespace character [\t\n\x0b\f\r]
+    /// \S a not-whitespace character [^\s]
+    /// \w a word character [a-zA-Z_0-9]
+    /// \W a non-word character [^\w]
+    ///
+    qDebug() << QRegExp("\\s{4}").exactMatch(" \r\t\n");///四个空白字符
+    qDebug() << QRegExp("\S").exactMatch(" ");///一个非空白字符
+    qDebug() << QRegExp("\\w{3}").exactMatch("a_4");///三个构成单词的字符
+    qDebug() << QRegExp("[a-z]{1,3}\\d+[&^%#]+").exactMatch("abc888&^%");///三个构成单词的字符
+    /// zh正则表达式匹配一个反斜线，需要四个反斜线，因为反斜线是特殊字符，一个反斜线需要两个反斜线来表示，
+    /// 而这两个反斜线还各自需要一个反斜线来表示
+    qDebug() << QRegExp("\\\\").exactMatch("\\");
+
+
 
     return a.exec();
 }
