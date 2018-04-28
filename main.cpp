@@ -5,6 +5,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+#if 0
     QRegExp re("...");///'.'表示字符
     qDebug() << re.exactMatch("abc");
 
@@ -12,14 +13,15 @@ int main(int argc, char *argv[])
     qDebug() << temp;
 
     re = QRegExp("[a-z]{3}");
-//    QString pattern = re.pattern();
+    //    QString pattern = re.pattern();
     qDebug() << QString("dd").contains(re);
 
-
+#endif
     ///.  *   +  ?
     /// '.'any char,'*'zero or more，'+' one or more; '?' one or zero
     /// X{n} exactly n times;  X{n,} at least n times, X{n,m} at least n but not more than m times;
 
+#if 0
     qDebug() << QRegExp(".").exactMatch("a");
     qDebug() << QRegExp("a*").exactMatch("");
     qDebug() << QRegExp("a+").exactMatch("aaa");
@@ -34,7 +36,16 @@ int main(int argc, char *argv[])
     qDebug() << QRegExp("\\d{1,100}").exactMatch("215614545421255");
     qDebug() << QRegExp("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}").exactMatch("192.168.0.235");
     qDebug() << QRegExp("[0-2][0-9][0-9]").exactMatch("392");
+#endif
 
+
+    ///范围
+
+    qDebug() << QRegExp("[abc]").exactMatch("b");///只能取"abc"中的一个
+    qDebug() << QRegExp("[^abc]").exactMatch("d");///除了"abc"之外的任意值
+    qDebug() << QRegExp("^a").exactMatch("abc");///除了"abc"之外的任意值
+    qDebug() << QRegExp("[a-zA-Z]").exactMatch("d");///a-zA-Z内的任意值
+    qDebug() << QRegExp("[a-z]|[A-Z]").exactMatch("d");///a-zA-Z内的任意值
 
     return a.exec();
 }
